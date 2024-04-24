@@ -3,18 +3,24 @@ import { getCollection, getEntryBySlug } from "astro:content";
 
 import Layout from "@/layouts/Layout.astro";
 import PostList from "@/components/PostList.astro";
-import Container from "../../components/Container.astro";
+import Container from "@/components/Container.astro";
 
 export const prerender = false;
+
 export async function getStaticPaths() {
+  const authors = await getCollection("authors");
   const posts = await getCollection("posts");
-  const paths = posts.map((post) => {
+  const paths = authors.map((author) => {
+    const postsByAuthor = posts.filter(
+      (post) => post.data.author === author.slug
+    );
     return {
       params: {
-        slug: post.slug,
+        slug: author.slug,
       },
       props: {
-        post,
+        author,
+        posts: postsByAuthor,
       },
     };
   });

@@ -1,6 +1,6 @@
 ---
 import Header from "@/components/Header.astro";
-import Nav from "@/components/Nav.astro";
+// import Nav from "@/components/Nav.astro";
 import Footer from "@/components/Footer.astro";
 import { ViewTransitions } from "astro:transitions";
 
@@ -33,10 +33,11 @@ const {
       <slot />
       <Footer />
     </div>
-  </body><style is:global>
-    html {
-      font-family: system-ui, sans-serif;
-      background: #fff;
-    }
-  </style>
+    <style is:global>
+      html {
+        font-family: system-ui, sans-serif;
+        background: #fff;
+      }
+    </style>
+  </body>
 </html>

@@ -14,7 +14,6 @@ import CategoryList from "@/components/CategoryList.astro";
 
 const allPosts = await getCollection("posts");
 const featuredPosts = allPosts.filter((post) => post.data.featured);
-const posts = allPosts.filter((post) => !post.data.featured).slice(0, 4);
 const allCategories = allPosts.flatMap((post) => post.data.categories);
 const categories = Array.from(new Set(allCategories));
 ---
