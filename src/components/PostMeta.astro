@@ -17,8 +17,8 @@ if (!author) {
 }
 ---
 
-<div class="flex n items-center mb-10">
-  <div class="flex items-center gap-x-2">
+<div class="flex items-center mb-10">
+  <div class="flex justify-between items-center gap-x-2">
     <a href={`/author/${author.slug}`}>
       <Image
         src={author.data.image}
@@ -34,9 +34,9 @@ if (!author) {
     <a href={`/author/${author.slug}`} class="text-zinc-600 text-2xl font-bold">
       {author.data.name}
     </a>
-  </div>
 
-  <span class="text-zinc-600 text-xl">
-    {remarkPluginFrontmatter.minutesRead} | {post.data.date}
-  </span>
+    <span class="text-zinc-600 text-xl">
+      {remarkPluginFrontmatter.minutesRead} | {post.data.date}
+    </span>
+  </div>
 </div>
