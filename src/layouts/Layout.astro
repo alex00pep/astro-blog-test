@@ -1,0 +1,42 @@
+---
+import Header from "@/components/Header.astro";
+import Nav from "@/components/Nav.astro";
+import Footer from "@/components/Footer.astro";
+import { ViewTransitions } from "astro:transitions";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title = "TechFitsU",
+  description = "Blog about innovative technologies and software architecture as a professional",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <div class="grid grid-rows-[auto_1fr_auto] min-h-screen">
+      <!-- <Nav /> -->
+      <Header title={title} />
+      <slot />
+      <Footer />
+    </div>
+  </body><style is:global>
+    html {
+      font-family: system-ui, sans-serif;
+      background: #fff;
+    }
+  </style>
+</html>

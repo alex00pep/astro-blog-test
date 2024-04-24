@@ -1,0 +1,73 @@
+---
+// import { databases } from "@/lib/appwrite";
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/Container.astro";
+import H1 from "@/components/H1.astro";
+import PostList from "@/components/PostList.astro";
+import CategoryList from "@/components/CategoryList.astro";
+
+// const { documents: posts } = await databases.listDocuments(
+//   import.meta.env.PUBLIC_APPWRITE_DATABASE_ID,
+//   import.meta.env.PUBLIC_APPWRITE_COLLECTION_ID
+// );
+
+const allPosts = await getCollection("posts");
+const featuredPosts = allPosts.filter((post) => post.data.featured);
+const posts = allPosts.filter((post) => !post.data.featured).slice(0, 4);
+const allCategories = allPosts.flatMap((post) => post.data.categories);
+const categories = Array.from(new Set(allCategories));
+---
+
+<Layout title="TechfitsU">
+  <Container>
+    <H1 text="TechfitsU" />
+    <p class="text-zinc-900 text-2xl mb-24 max-sm:mb-14">
+      Join the Community and learn from Music Producers and Enthusiasts
+    </p>
+
+    <hr class="w-full border border-teal-900 mb-16 max-sm:mb-10" />
+
+    <div
+      class="grid grid-cols-[auto,1fr] gap-x-14 gap-y-3 mb-16 max-lg:grid-cols-1"
+    >
+      <CategoryList categories={categories} title="Recent Posts" />
+    </div>
+
+    <div class="mb-10">
+      <PostList posts={featuredPosts} />
+    </div>
+
+    <div class="flex justify-end">
+      <a
+        href={`/blog`}
+        class="bg-teal-900 text-white py-3 px-6 rounded-xl text-xl"
+      >
+        Read more
+      </a>
+    </div>
+
+    <!-- <ul>
+      {
+        posts.map((post) => {
+          return (
+            <li class="mb-12 last:mb-0">
+              <h2 class="text-3xl font-semibold mb-4">
+                <a
+                  class="hover:text-blue-500 hover:underline"
+                  href={`/blog/${post.slug}`}
+                >
+                  {post.title}
+                </a>
+              </h2>
+              <p class="text-sm text-slate-500 mb-4">
+                {new Date(post.$createdAt).toLocaleDateString()}
+              </p>
+              <p>{post.excerpt}</p>
+            </li>
+          );
+        })
+      }
+    </ul> -->
+  </Container>
+</Layout>
