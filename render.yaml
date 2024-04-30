@@ -6,7 +6,7 @@ services:
     # Update the following line with your Strapi GitHub repo
     repo: https://github.com/alex00pep/astro-blog-test.git
     branch: ssr-page
-    buildCommand: astro check && astro build
+    buildCommand: npm install && astro check && astro build
     startCommand: HOST=0.0.0.0 PORT=4321 node ./dist/server/entry.mjs
     healthCheckPath: /_health
     
