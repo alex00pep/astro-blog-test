@@ -1,10 +1,17 @@
 ---
-title: Hello, World
+title: About me
+layout: ../layouts/Layout.astro
+details: My first MDX-based page
 ---
+import Button from '@/components/react/Button.jsx';
 
 # Hi there!
+# {frontmatter.details}
+Here is my Button component, working in MDX:
 
-This Markdown file creates a page at `your-domain.com/page-1/`
+I live on **Mars** but feel free to <Button title="Contact me"  client:load />.
+
+This Markdown file creates a page at `your-domain.com/about/`
 
 It probably isn't styled much, but Markdown does support:
 - **bold** and _italics._
